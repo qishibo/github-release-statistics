@@ -17,5 +17,6 @@ npm run serve
 
 ## Support
 
-[qii404.me/](https://qii404.me/)
+[qii404.me](https://qii404.me/)
+
 [@齐士博](https://weibo.com/shiboooo/)
