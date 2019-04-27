@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <el-container class="container">
 
       <el-header height="200px">
         <h3>Github Repo URL</h3>
@@ -85,7 +85,7 @@
           </div>
         </el-card>
       </el-main>
-    </div>
+    </el-container>
 
     <div class="copyright-declare">Powered by <a href="https://qii404.me">qii404.me</a></div>
   </div>
