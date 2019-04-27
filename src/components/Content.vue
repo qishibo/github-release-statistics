@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-container class="container">
+    <div class="container">
 
       <el-header height="200px">
         <h3>Github Repo URL</h3>
-        <el-form class="search-form" @submit.native.prevent>
+        <el-form @submit.native.prevent>
           <el-form-item>
             <el-input autofocus v-model="repoURL" @keyup.enter.native="startAnalysis" :placeholder="defaultURL"></el-input>
           </el-form-item>
@@ -16,8 +16,8 @@
       </el-header>
 
       <el-main v-if="data.length !== 0">
-        <!-- top total downloads -->
         <div class="common-info-container" v-if="totalDownloads">
+          <!-- top total downloads -->
           <el-alert
             :closable="false"
             type="info"
@@ -26,6 +26,7 @@
             <i class="el-icon-download">Total Downloads: <b>{{totalDownloads}}</b></i>
           </el-alert>
 
+          <!-- release downloads -->
           <el-card>
             <el-table v-if="downloadsByReleases.length != 0"
               :data="downloadsByReleases"
@@ -50,7 +51,6 @@
               </el-table-column>
             </el-table>
           </el-card>
-
         </div>
 
         <!-- release cards -->
@@ -85,7 +85,7 @@
           </div>
         </el-card>
       </el-main>
-    </el-container>
+    </div>
 
     <div class="copyright-declare">Powered by <a href="https://qii404.me">qii404.me</a></div>
   </div>
@@ -176,12 +176,14 @@
     color: #263238;
   }
   .container{
-    width: 1000px;
+    max-width: 900px;
     margin: 10px auto;
-    /*border: 1px solid grey;*/
   }
-  .search-form{
-    width: 100%;
+  .container .el-header, .container .el-main {
+    padding: 12px;
+  }
+  .common-info-container{
+    margin-bottom: 20px;
   }
   #top-total {
     margin-bottom: 10px;
@@ -195,11 +197,9 @@
   .release-card-right {
     float: right;
     font-size: 80%;
-    line-height: 19px;
+    /*line-height: 19px;*/
     color: grey;
-  }
-  .common-info-container{
-    margin-bottom: 20px;
+    margin-top: 5px;
   }
   .copyright-declare{
     position: fixed;;

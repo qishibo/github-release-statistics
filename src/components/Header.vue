@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <el-card><h1 class="top-title">Github Release Assets Download Analysis</h1></el-card>
-  </div>
+  <el-card>
+    <h1 class="top-title">Github Release Assets Download Analysis</h1>
+  </el-card>
 </template>
 
 <script type="text/javascript">

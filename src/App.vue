@@ -1,7 +1,14 @@
 <template>
   <div id="app">
-    <Header></Header>
-    <Content></Content>
+    <el-container>
+      <el-header class="container-top" height="90px">
+        <Header></Header>
+      </el-header>
+
+      <el-main class="container-main">
+        <Content></Content>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
@@ -23,8 +30,12 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*text-align: center;*/
   color: #2c3e50;
-  /*margin-top: 60px;*/
+}
+#app .container-top {
+  padding: 0;
+}
+#app .container-main {
+  padding: 12px;
 }
 </style>
