@@ -2,17 +2,16 @@
   <div>
     <el-container class="container">
 
-      <el-header height="200px">
+      <el-header height="140px">
         <h3>Github Repo URL</h3>
-        <el-form @submit.native.prevent>
-          <el-form-item>
-            <el-input autofocus v-model="repoURL" @keyup.enter.native="startAnalysis" :placeholder="defaultURL"></el-input>
-          </el-form-item>
 
-          <el-form-item>
-            <el-button type="info" @click="startAnalysis" plain><i :class="beginStatusClass"></i>Begin Anlysis</el-button>
-          </el-form-item>
-        </el-form>
+        <div class="repo-right">
+          <el-button style="width: 100%" type="info" @click="startAnalysis" plain><i :class="beginStatusClass"></i>Begin Anlysis</el-button>
+        </div>
+        <div class="repo-left">
+          <el-input autofocus v-model="repoURL" @keyup.enter.native="startAnalysis" :placeholder="defaultURL"></el-input>
+        </div>
+
       </el-header>
 
       <el-main v-if="data.length !== 0">
@@ -20,11 +19,14 @@
           <!-- top total downloads -->
           <el-alert
             :closable="false"
-            type="info"
+            type="success"
             id="top-total"
             >
             <i class="el-icon-download">Total Downloads: <b>{{totalDownloads}}</b></i>
           </el-alert>
+
+          <el-button size="mini" type="info" plain @click="toggleChart">Toggle Chart Type</el-button>
+          <ve-chart :data="chartData" :settings="chartSettings"></ve-chart>
 
           <!-- release downloads -->
           <el-card>
@@ -47,6 +49,13 @@
                 sortable
                 prop="count"
                 label="Download"
+                >
+              </el-table-column>
+              <el-table-column
+                sortable
+                prop="percent"
+                label="Percent %"
+                :sort-method="sortBy"
                 >
               </el-table-column>
             </el-table>
@@ -101,9 +110,21 @@
         data: [],
         beginStatusClass: '',
         defaultURL: 'https://github.com/qishibo/AnotherRedisDesktopManager/',
+        chartIndex: 0,
+        pieRoseType: 'radius',
+        chartToggles: ['histogram', 'pie', 'pie'],
       };
     },
     computed: {
+      chartSettings() {
+        const settings = {type: this.chartToggles[this.chartIndex], roseType: this.pieRoseType};
+
+        if (settings.type === 'pie') {
+          this.pieRoseType = this.pieRoseType ? '' : 'radius';
+        }
+
+        return settings;
+      },
       totalDownloads() {
         let count = 0;
 
@@ -115,8 +136,15 @@
 
         return count;
       },
+      chartData() {
+        return {
+          columns: ['tag', 'count'],
+          rows: this.downloadsByReleases,
+        }
+      },
       downloadsByReleases() {
         let download = [];
+        const total = this.totalDownloads;
 
         for (const release of this.data) {
           let releaseDownload = {tag: release.tag_name, count: 0};
@@ -125,6 +153,7 @@
             releaseDownload.count += asset.download_count;
           }
 
+          releaseDownload.percent = ((releaseDownload.count / total).toFixed(4) * 100).toFixed(2);
           download.push(releaseDownload);
         }
 
@@ -167,6 +196,13 @@
           this.beginStatusClass = '';
         });
       },
+      toggleChart() {
+        this.chartIndex += 1;
+        (this.chartIndex >= this.chartToggles.length) && (this.chartIndex = 0);
+      },
+      sortBy(a, b) {
+        return a.percent - b.percent;
+      },
     },
   };
 </script>
@@ -181,6 +217,13 @@
   }
   .container .el-header, .container .el-main {
     padding: 12px;
+  }
+  .repo-right {
+    float: right;
+    width: 125px;
+  }
+  .repo-left {
+    margin-right: 130px;
   }
   .common-info-container{
     margin-bottom: 20px;
