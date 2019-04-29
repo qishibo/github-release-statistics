@@ -26,7 +26,7 @@
           </el-alert>
 
           <el-button size="mini" type="info" plain @click="toggleChart">Toggle Chart Type</el-button>
-          <ve-chart :data="chartData" :settings="chartSettings"></ve-chart>
+          <ve-chart :legend-visible="legendVisible" :data="chartData" :settings="chartSettings"></ve-chart>
 
           <!-- release downloads -->
           <el-card>
@@ -113,6 +113,7 @@
         chartIndex: 0,
         pieRoseType: 'radius',
         chartToggles: ['histogram', 'pie', 'pie'],
+        legendVisible: false,
       };
     },
     computed: {
@@ -121,6 +122,10 @@
 
         if (settings.type === 'pie') {
           this.pieRoseType = this.pieRoseType ? '' : 'radius';
+          this.legendVisible = true;
+        }
+        else {
+          this.legendVisible = false;
         }
 
         return settings;
