@@ -2,7 +2,7 @@
 
 View [https://qii404.me/github-release-statistics/](https://qii404.me/github-release-statistics/) to statistic, enjoy!
 
-![github-release-statistic](https://ws1.sinaimg.cn/large/71405cably1g2c9jsii6pj20u61yh0zn.jpg)
+![github-release-statistic](https://sinaimg.qii404.me/large/71405cably1g2khgjr4v5j20sq2mkn6d.jpg)
 
 ## Dev Setup
 
