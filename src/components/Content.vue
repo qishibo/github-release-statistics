@@ -209,6 +209,16 @@
         return a.percent - b.percent;
       },
     },
+    mounted() {
+      const repo = (new URL(window.location.href)).searchParams.get('repo');
+
+      if (!repo) {
+        return true;
+      }
+
+      this.repoURL = repo;
+      this.startAnalysis();
+    },
   };
 </script>
 
