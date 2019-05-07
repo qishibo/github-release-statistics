@@ -133,10 +133,8 @@
       totalDownloads() {
         let count = 0;
 
-        for (const release of this.data) {
-          for (const asset of release.assets) {
-            count += asset.download_count;
-          }
+        for (const releaseData of this.downloadsByReleases) {
+          count += releaseData.count;
         }
 
         return count;
@@ -149,17 +147,22 @@
       },
       downloadsByReleases() {
         let download = [];
-        const total = this.totalDownloads;
+        let total = 0;
 
         for (const release of this.data) {
           let releaseDownload = {tag: release.tag_name, count: 0};
 
           for (const asset of release.assets) {
+            // todo: filter
             releaseDownload.count += asset.download_count;
+            total += asset.download_count;
           }
 
-          releaseDownload.percent = ((releaseDownload.count / total).toFixed(4) * 100).toFixed(2);
           download.push(releaseDownload);
+        }
+
+        for (const releaseData of download) {
+          releaseData.percent = ((releaseData.count / total).toFixed(4) * 100).toFixed(2);
         }
 
         return download;
