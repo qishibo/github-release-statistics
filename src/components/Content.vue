@@ -26,6 +26,7 @@
           </el-alert>
 
           <el-button size="mini" type="info" plain @click="toggleChart">Toggle Chart Type</el-button>
+          <el-button size="mini" type="info" plain @click="setPatternDialog = true">Exclude Asset File <span style="color: red;">{{ filterPattern }}</span></el-button>
           <ve-chart :legend-visible="legendVisible" :data="chartData" :settings="chartSettings"></ve-chart>
 
           <!-- release downloads -->
@@ -96,6 +97,20 @@
       </el-main>
     </el-container>
 
+    <!-- set pattern dialog -->
+    <el-dialog
+      title="Set Exclude Asset Files"
+      :visible.sync="setPatternDialog"
+      append-to-body>
+
+      <p>exclude file pattern, such as  "yml" or "*yml*"</p>
+      <el-input v-model="filterPattern" @keyup.enter.native="setFilePattern" />
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="setFilePattern">Set</el-button>
+      </div>
+    </el-dialog>
+
     <div class="copyright-declare">Powered by <a href="https://qii404.me">qii404.me</a></div>
   </div>
 </template>
@@ -114,6 +129,8 @@
         pieRoseType: 'radius',
         chartToggles: ['histogram', 'pie', 'pie'],
         legendVisible: false,
+        filterPattern: '',
+        setPatternDialog: false,
       };
     },
     computed: {
@@ -153,7 +170,10 @@
           let releaseDownload = {tag: release.tag_name, count: 0};
 
           for (const asset of release.assets) {
-            // todo: filter
+            if (!asset) {
+              continue;
+            }
+
             releaseDownload.count += asset.download_count;
             total += asset.download_count;
           }
@@ -194,7 +214,8 @@
         this.$http.get(releaseURL).then(response => {
           console.log(response);
 
-          this.data = response.body;
+          // this.data = response.body;
+          this.data = this.filterFile(response.body);
           this.beginStatusClass = '';
         }).catch(response => {
           console.log('error', response);
@@ -210,6 +231,37 @@
       },
       sortBy(a, b) {
         return a.percent - b.percent;
+      },
+      filterFile(data) {
+        const pattern = this.getfilterPattern();
+
+        if (!pattern) {
+          return data;
+        }
+
+        for (const release of data) {
+          for (var assetIndex = 0; assetIndex < release.assets.length; assetIndex++) {
+            if (release.assets[assetIndex].name.match(pattern)) {
+              delete release.assets[assetIndex];
+            }
+          }
+        }
+
+        return data;
+      },
+      getfilterPattern() {
+        let pattern = this.filterPattern;
+
+        if (!pattern) {
+          return false;
+        }
+
+        pattern = pattern.replace(/\*/g, '.*');
+        return new RegExp(pattern);
+      },
+      setFilePattern() {
+        this.setPatternDialog = false;
+        this.startAnalysis();
       },
     },
     mounted() {
