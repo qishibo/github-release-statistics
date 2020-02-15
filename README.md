@@ -2,7 +2,7 @@
 
 View [https://qii404.me/github-release-statistics/](https://qii404.me/github-release-statistics/) to statistic, enjoy!
 
-![github-release-statistic](https://imgup.qii404.me/fdsafsdaf4123243214.jpeg)
+![github-release-statistic](https://imgup.qii404.xyz/fdsafsdaf4123243214.jpeg)
 
 ## Dev Setup
 
