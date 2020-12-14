@@ -7,9 +7,11 @@
 
 打开 [http://git-analysis.ringotek.cn/](http://git-analysis.ringotek.cn/) 来分析你在github上发布的资源的下载量
 
-![](https://pic.downk.cc/item/5fd75f193ffa7d37b3c2e51f.jpg)
-![](https://pic.downk.cc/item/5fd75f343ffa7d37b3c30562.jpg)
-![](https://pic.downk.cc/item/5fd75f493ffa7d37b3c334d7.jpg)
+![1](https://pic.downk.cc/item/5fd75f193ffa7d37b3c2e51f.jpg)
+
+![2](https://pic.downk.cc/item/5fd75f343ffa7d37b3c30562.jpg)
+
+![3](https://pic.downk.cc/item/5fd75f493ffa7d37b3c334d7.jpg)
 
 ## Dev Setup
 
