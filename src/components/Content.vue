@@ -54,7 +54,7 @@
               </el-table-column>
               <el-table-column
                 sortable
-                prop="Percent"
+                prop="percent"
                 label="占比 %"
                 :sort-method="sortBy"
                 >
@@ -126,7 +126,7 @@
         repoURL: '',
         data: [],
         beginStatusClass: '',
-        defaultURL: 'https://github.com/fslongjin/github-release-statistics',
+        defaultURL: 'https://github.com/fslongjin/Cpp-Asciify',
         chartIndex: 0,
         pieRoseType: 'radius',
         chartToggles: ['histogram', 'pie', 'pie'],
