@@ -7,7 +7,9 @@
 
 打开 [http://git-analysis.ringotek.cn/](http://git-analysis.ringotek.cn/) 来分析你在github上发布的资源的下载量
 
-![github-release-statistic](https://imgup.qii404.xyz/fdsafsdaf4123243214.jpeg)
+![](https://pic.downk.cc/item/5fd75f193ffa7d37b3c2e51f.jpg)
+![](https://pic.downk.cc/item/5fd75f343ffa7d37b3c30562.jpg)
+![](https://pic.downk.cc/item/5fd75f493ffa7d37b3c334d7.jpg)
 
 ## Dev Setup
 
@@ -30,4 +32,4 @@ npm run serve
 
 [灵高信息技术](http://ringotek.cn/)
 
-![欢迎关注公众号](https://lj-pic-bed-1251967225.cos.ap-guangzhou.myqcloud.com/20201214204508.jpg)
+![](https://pic.downk.cc/item/5fd75eab3ffa7d37b3c2546e.jpg)
