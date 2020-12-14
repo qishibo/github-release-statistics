@@ -6,7 +6,7 @@
         <h3>Github Repo URL</h3>
 
         <div class="repo-right">
-          <el-button style="width: 100%" type="info" @click="startAnalysis" plain><i :class="beginStatusClass"></i>Begin Anlysis</el-button>
+          <el-button style="width: 100%" type="info" @click="startAnalysis" plain><i :class="beginStatusClass"></i>开始分析</el-button>
         </div>
         <div class="repo-left">
           <el-input autofocus v-model="repoURL" @keyup.enter.native="startAnalysis" :placeholder="defaultURL"></el-input>
@@ -22,11 +22,11 @@
             type="success"
             id="top-total"
             >
-            <i class="el-icon-download">Total Downloads: <b>{{totalDownloads}}</b></i>
+            <i class="el-icon-download">总下载量: <b>{{totalDownloads}}</b></i>
           </el-alert>
 
-          <el-button size="mini" type="info" plain @click="toggleChart">Toggle Chart Type</el-button>
-          <el-button size="mini" type="info" plain @click="setPatternDialog = true">Exclude Asset File <span style="color: red;">{{ filterPattern }}</span></el-button>
+          <el-button size="mini" type="info" plain @click="toggleChart">改变图表类型</el-button>
+          <el-button size="mini" type="info" plain @click="setPatternDialog = true">排除资源文件<span style="color: red;">{{ filterPattern }}</span></el-button>
           <ve-chart :legend-visible="legendVisible" :data="chartData" :settings="chartSettings"></ve-chart>
 
           <!-- release downloads -->
@@ -34,12 +34,12 @@
             <el-table v-if="downloadsByReleases.length != 0"
               :data="downloadsByReleases"
               show-summary
-              sum-text="Total Downloads"
+              sum-text="总下载量"
               max-height="300"
               >
               <el-table-column
                 prop="name"
-                label="Release"
+                label="发布版本号"
                 >
                   <template slot-scope="scope">
                     <i class="el-icon-goods"></i>
@@ -49,13 +49,13 @@
               <el-table-column
                 sortable
                 prop="count"
-                label="Download"
+                label="下载量"
                 >
               </el-table-column>
               <el-table-column
                 sortable
-                prop="percent"
-                label="Percent %"
+                prop="Percent"
+                label="占比 %"
                 :sort-method="sortBy"
                 >
               </el-table-column>
@@ -79,7 +79,7 @@
               >
               <el-table-column
                 prop="name"
-                label="Assets"
+                label="资源文件"
                 >
                   <template slot-scope="scope">
                     <i class="el-icon-sold-out"></i>
@@ -88,7 +88,7 @@
               </el-table-column>
               <el-table-column
                 prop="download_count"
-                label="Download"
+                label="下载量"
                 >
               </el-table-column>
             </el-table>
@@ -99,19 +99,21 @@
 
     <!-- set pattern dialog -->
     <el-dialog
-      title="Set Exclude Asset Files"
+      title="设置要排除的资源文件"
       :visible.sync="setPatternDialog"
       append-to-body>
 
-      <p>exclude file pattern, such as  "yml" or "*yml*"</p>
+      <p>要排除的文件类型, 例如  "yml" 或 "*yml*"</p>
       <el-input v-model="filterPattern" @keyup.enter.native="setFilePattern" />
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click="setFilePattern">Set</el-button>
+        <el-button @click="setFilePattern">设置</el-button>
       </div>
     </el-dialog>
 
-    <div class="copyright-declare">Powered by <a href="https://qii404.me">qii404.me</a></div>
+    
+    <div class="copyright-declare">本项目原作者是<a href="https://github.com/qishibo/github-release-statistics">qishibo</a> 当前镜像汉化：<a href="http://ringotek.cn">灵高信息技术</a></div>
+  
   </div>
 </template>
 
@@ -124,7 +126,7 @@
         repoURL: '',
         data: [],
         beginStatusClass: '',
-        defaultURL: 'https://github.com/qishibo/AnotherRedisDesktopManager/',
+        defaultURL: 'https://github.com/fslongjin/github-release-statistics',
         chartIndex: 0,
         pieRoseType: 'radius',
         chartToggles: ['histogram', 'pie', 'pie'],

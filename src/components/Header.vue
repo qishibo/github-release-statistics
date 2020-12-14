@@ -1,6 +1,6 @@
 <template>
   <el-card>
-    <h1 class="top-title">Github Release Assets Download Analysis</h1>
+    <h1 class="top-title">GitHub 发布资源下载分析</h1>
   </el-card>
 </template>
 
