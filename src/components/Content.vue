@@ -282,7 +282,7 @@
     color: #263238;
   }
   .container{
-    max-width: 900px;
+    max-width: 950px;
     margin: 10px auto;
   }
   .container .el-header, .container .el-main {
